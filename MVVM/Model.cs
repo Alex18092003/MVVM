@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace MVVM
 {
-    internal class Model
+    static class Model
     {
+        public static List<string> dataList = new List<string> { "Сложение", "Вычитание", "Умножение", "Деление" };
+        public static List<string> dataListOperation = new List<string> { "+", "-", "*", "/" };
+
     }
 }
