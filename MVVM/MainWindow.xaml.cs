@@ -25,7 +25,7 @@ namespace MVVM
         {
             InitializeComponent();
             DataContext = VM;
-           // CommandBindings.Add(VM.bind);
+            CommandBindings.Add(VM.bind);
         }
     }
 }

@@ -10,6 +10,9 @@ namespace MVVM
     {
         public static List<string> dataList = new List<string> { "Сложение", "Вычитание", "Умножение", "Деление" };
         public static List<string> dataListOperation = new List<string> { "+", "-", "*", "/" };
-
+        
+        public static string OneNumber;
+        public static string TwoNumber;
+        public static string textResult;
     }
 }

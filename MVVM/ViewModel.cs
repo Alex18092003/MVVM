@@ -5,12 +5,29 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
 using System.Windows.Input;
+using System.Windows;
 
 namespace MVVM
 {
     class ViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
+
+        public string NumberOne
+        {
+            get { return Model.OneNumber; }
+            set { Model.OneNumber = value; }
+        }
+
+        public string NumberTwo
+        {
+            get { return Model.TwoNumber; }
+            set { Model.TwoNumber = value; }
+        }
+        public string Result
+        {
+            get { return Model.textResult.ToString(); }
+        }
 
         public List<string> ComboChange
         {
@@ -30,7 +47,7 @@ namespace MVVM
             }
         }
 
-        public string CBIndex // свойство для отображения фамилии в Combobox
+        public string CBIndex 
         {
             get
             {
@@ -49,17 +66,36 @@ namespace MVVM
         // класс, который реализазует интерфейс ICommand
         public RoutedCommand Command { get; set; } = new RoutedCommand();
 
-        // обработчик события для Command (увеличение значения числа на 1)
+        // обработчик события для Command 
         public void Command_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            //Model.count++;
-            PropertyChanged(this, new PropertyChangedEventArgs("CountChange"));
+            double numberOne = Convert.ToDouble(Model.OneNumber);
+            double numberTwo = Convert.ToDouble(Model.TwoNumber);
+ 
+                switch (cbIndex)
+                {
+                    case 0:
+                        Model.textResult = Convert.ToString(numberOne + numberTwo);
+                        break;
+                    case 1:
+                        Model.textResult = Convert.ToString(numberOne - numberTwo);
+                        break;
+                    case 2:
+                        Model.textResult = Convert.ToString(numberOne * numberTwo);
+                        break;
+                    case 3:
+                        Model.textResult = Convert.ToString(numberOne / numberTwo);
+                        break;
+                }
+            
+            
+            PropertyChanged(this, new PropertyChangedEventArgs("Result"));
         }
         public CommandBinding bind;
         public ViewModel()
         {
             bind = new CommandBinding(Command);
-            //bind.Execute += Command_Executed;
+            bind.Executed += Command_Executed;
         }
     }
 }

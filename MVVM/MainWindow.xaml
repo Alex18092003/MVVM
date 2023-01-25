@@ -11,13 +11,13 @@
             <TextBlock Style="{StaticResource TextBlock}">Выберите арифместическую операцию</TextBlock>
             <ComboBox FontSize="18" SelectedIndex="{Binding IndexSelected}" ItemsSource="{Binding ComboChange}" Name="ComboBoxOperetion"></ComboBox>
             <StackPanel Margin="0,10,0,10" Orientation="Horizontal" HorizontalAlignment="Center">
-                <TextBox Style="{StaticResource TextBoxNumber}" Name="TextBoxOne"></TextBox>
+                <TextBox Text="{Binding NumberOne}" Style="{StaticResource TextBoxNumber}" Name="TextBoxOne"></TextBox>
                 <TextBlock Text="{Binding CBIndex}" Style="{StaticResource TextBlock}" Name="TextBlockOperation">+</TextBlock>
-                <TextBox Style="{StaticResource TextBoxNumber}" Name="TextBoxTwo"></TextBox>
+                <TextBox Text="{Binding NumberTwo}" Style="{StaticResource TextBoxNumber}" Name="TextBoxTwo"></TextBox>
             </StackPanel>
-            <Button FontSize="18">Вычислить</Button>
+            <Button Command="{Binding Command}" FontSize="18">Вычислить</Button>
             <GroupBox Margin="0,10,0,0" FontSize="18" Header="Рузультат">
-                <TextBlock FontSize="18" Name="TextBlockResult"></TextBlock>
+                <TextBlock Text="{Binding Result}" FontSize="18" Name="TextBlockResult"></TextBlock>
             </GroupBox>
         </StackPanel>
     </Grid>
