@@ -15,8 +15,8 @@ namespace MVVM
 
         public string NumberOne
         {
-            get { return Model.OneNumber; }
-            set { Model.OneNumber = value; }
+                get { return Model.OneNumber; }
+                set { Model.OneNumber = value; } 
         }
 
         public string NumberTwo
@@ -69,9 +69,11 @@ namespace MVVM
         // обработчик события для Command 
         public void Command_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            double numberOne = Convert.ToDouble(Model.OneNumber);
+            try
+            {
+                double numberOne = Convert.ToDouble(Model.OneNumber);
             double numberTwo = Convert.ToDouble(Model.TwoNumber);
- 
+           
                 switch (cbIndex)
                 {
                     case 0:
@@ -87,9 +89,13 @@ namespace MVVM
                         Model.textResult = Convert.ToString(numberOne / numberTwo);
                         break;
                 }
-            
-            
-            PropertyChanged(this, new PropertyChangedEventArgs("Result"));
+
+                PropertyChanged(this, new PropertyChangedEventArgs("Result"));
+            }
+            catch
+            {
+                Model.textResult = "Ошибка";
+            }
         }
         public CommandBinding bind;
         public ViewModel()
